@@ -33,19 +33,19 @@ while(True):
         if (ball_location[0] > minimum_area) and (ball_location[0] < maximum_area):
             if ball_location[1] > (center_image_x + (image_width/3)):
                 print("ON TOURNE A DROITE")
-                robot.turnRight(turn_speed)
+                #robot.turnRight(turn_speed)
             elif ball_location[1] < (center_image_x - (image_width/3)):
                 print("ON TOURNE A GAUCHE")
-                robot.turnLeft(turn_speed)
+                #robot.turnLeft(turn_speed)
             else:
-                robot.forward(speed)
+                #robot.forward(speed)
                 print("EN AVANT !")
         elif (ball_location[0] < minimum_area):
-            robot.turnLeft(turn_speed)
+            #robot.turnLeft(turn_speed)
             print("On ne voit pas balle...")
         else:
-            robot.stop()
+            #robot.stop()
             print("on est assez proche")
     else:
-        robot.turnLeft(turn_speed)
+        #robot.turnLeft(turn_speed)
         print("On ne trouve vraiment rien.")

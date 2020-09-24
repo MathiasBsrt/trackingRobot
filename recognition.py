@@ -11,6 +11,7 @@ See http://www.workwithcolor.com for more informations
 
 def objectRecognition(hue_value,rawCapture,camera):
     #Take image from camera
+    print("object reco")
     frame = camera.capture_continuous(rawCapture, format="bgr", use_video_port=True)[0]
     image = frame.array
 
