@@ -6,8 +6,8 @@ import numpy as np
 import gpiozero
  
 camera = PiCamera()
-image_width = 640
-image_height = 480
+image_width = 1080
+image_height = 720
 camera.resolution = (image_width, image_height)
 camera.framerate = 32
 rawCapture = PiRGBArray(camera, size=(image_width, image_height))
@@ -20,7 +20,7 @@ maximum_area = 100000
 forward_speed = 1.0
 turn_speed = 0.8
  
-HUE_VAL = 25
+HUE_VAL = 29
  
 lower_color = np.array([HUE_VAL-10,100,100])
 upper_color = np.array([HUE_VAL+10, 255, 255])
