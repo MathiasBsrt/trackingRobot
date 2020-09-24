@@ -3,7 +3,7 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import cv2
 import numpy as np
-import gpiozero
+#import gpiozero
  
 camera = PiCamera()
 image_width = 1080
