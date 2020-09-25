@@ -2,7 +2,6 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import cv2
 import numpy as np
-import gpiozero
  
 camera = PiCamera()
 image_width = 640
@@ -15,16 +14,15 @@ center_image_y = image_height / 2
 minimum_area = 250
 maximum_area = 100000
  
-robot = gpiozero.Robot(left=(22,27), right=(17,18))
 forward_speed = 1.0
 turn_speed = 0.8
  
-HUE_VAL = 29
+HUE_VAL = 13
  
 lower_color = np.array([HUE_VAL-10,100,100])
 upper_color = np.array([HUE_VAL+10, 255, 255])
  
-for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True)[0]:
+for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     image = frame.array
  
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
