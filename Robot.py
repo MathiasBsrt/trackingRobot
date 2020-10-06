@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO 
 from time import sleep
 from MotorDC import MotorDC
+
 '''
 This class control the sensors and acuators of the robot
 '''
@@ -8,6 +9,7 @@ class Robot:
     motor1 = 0
     motor2 = 0
     def __init__(self):
+        print("init motors")
         self.motor1 = MotorDC(25,23)
         self.motor2 = MotorDC(24,18)
     '''
@@ -15,6 +17,7 @@ class Robot:
     @param speed of the robot
     '''
     def forward(self, speed):
+        print("forward !!!")
         motor1.forward(speed)
         motor2.forward(speed)
 
