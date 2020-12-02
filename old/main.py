@@ -2,7 +2,10 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import cv2
 import numpy as np
- 
+from MotorDC import MotorDC
+
+motorControl = MotorDC()
+
 camera = PiCamera()
 image_width = 640
 image_height = 480
@@ -52,22 +55,22 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     if ball_location:
         if (ball_location[0] > minimum_area) and (ball_location[0] < maximum_area):
             if ball_location[1] > (center_image_x + (image_width/3)):
-               # robot.right(turn_speed)
+                motorControl.right(turn_speed)
                 print("Turning right")
             elif ball_location[1] < (center_image_x - (image_width/3)):
-                #robot.left(turn_speed)
+                motorControl.left(turn_speed)
                 print("Turning left")
             else:
-               # robot.forward(forward_speed)
+                motorControl.forward(forward_speed)
                 print("Forward")
         elif (ball_location[0] < minimum_area):
-            #robot.left(turn_speed)
+            motorControl.left(turn_speed)
             print("Target isn't large enough, searching")
         else:
-            #robot.stop()
+            motorControl.stop()
             print("Target large enough, stopping")
     else:
-        #robot.left(turn_speed)
+        motorControl.left(turn_speed)
         print("Target not found, searching")
  
     rawCapture.truncate(0)
