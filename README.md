@@ -10,5 +10,6 @@ L'utilisateur contrôle le robot en lui montrant un objet rouge. Le robot avance
 - Caméra NOiR
 
 ### Démo :
+<img src="demo.jpeg" width="200">
 
 Ce projet n'est pas sponsorisé par cofidis :)
