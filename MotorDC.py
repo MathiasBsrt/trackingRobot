@@ -3,7 +3,7 @@ import board
 from adafruit_motorkit import MotorKit
 
 '''
-This class represent a motor DC
+Cette classe représente un moteur DC
 '''
 class MotorDC:
     kit = 0
@@ -13,29 +13,39 @@ class MotorDC:
         self.kit = MotorKit(i2c)
 
     '''
-    This function allow the motor to go forward
-    @param speed of the motor speed=0 – 100
+    Cette fonction permet au robot d'aller en avant
+    @param speed : vitesse des moteurs (0 - 1)
     '''
     def forward(self, speed):
-        self.kit.motor1.throttle = 0.9
-        self.kit.motor2.throttle = 0.9
+        self.kit.motor1.throttle = speed
+        self.kit.motor2.throttle = speed
     
-        '''
-    This function allow the motor to go backward
-    @param speed of the motor speed=0 – 100
+    '''
+    Cette fonction permet au robot d'aller en arrière
+    @param speed : vitesse des moteurs (0 - 1)
     '''
     def backward(self, speed):
         self.kit.motor1.throttle = -speed
         self.kit.motor2.throttle = -speed
-
+    '''
+    Cette fonction permet au robot de tourner à droite
+    @param speed : vitesse des moteurs (0 - 1)
+    '''
     def right(self,speed):
         self.kit.motor1.throttle = 0
-        self.kit.motor2.throttle = 0.9
+        self.kit.motor2.throttle = speed
 
+    '''
+    Cette fonction permet au robot de tourner à gauche
+    @param speed : vitesse des moteurs (0 - 1)
+    '''
     def left(self,speed):
-        self.kit.motor1.throttle = 0.9
+        self.kit.motor1.throttle = speed
         self.kit.motor2.throttle = 0
-    
+    '''
+    Cette fonction permet au robot de s'arrêter
+    @param speed : vitesse des moteurs (0 - 1)
+    '''
     def stop(self):
         self.kit.motor1.throttle = 0
         self.kit.motor2.throttle = 0
