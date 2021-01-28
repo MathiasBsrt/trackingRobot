@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import division
-
-"""
-Programme principal du robot traqueur d'objet.
-Le robot suit un objet d'une couleur définit.
-
-
-Author:     Mark Heywood
-Date:	    31/12/2017
-Version     0.1.0
-
-Sources : https://www.bluetin.io/opencv/opencv-color-detection-filtering-python/
-"""
 import cv2
 import numpy as np
 import time
+from MotorDC import MotorDC
+
+motorControl = MotorDC()
 
 def nothing(*arg):
         pass
@@ -30,8 +21,8 @@ lowVal = 124
 highHue = 255
 highSat = 255
 highVal = 255
-forward_speed = 0.7
-turn_speed = 0.5
+forward_speed = 0.9
+turn_speed = 0.9
 
 # Initialisation de la camera
 vidCapture = cv2.VideoCapture(0)
@@ -62,26 +53,29 @@ while True:
         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,0),2)
         print("x="+str(x))
         if(x<FRAME_WIDTH/3):
-            #motorControl.left(turn_speed)
-            print("gauche")
-        elif(x>=FRAME_WIDTH/3 and x<(FRAME_WIDTH-(FRAME_HEIGHT/3))):
-            print("AVANT")
-            #motorControl.forward(forward_speed)
-        else:
-           # motorControl.right(turn_speed)
+#            time.sleep(0.5)
+            motorControl.right(turn_speed)
             print("droite")
+        elif(x>=FRAME_WIDTH/3 and x<(FRAME_WIDTH-(FRAME_HEIGHT/3))):
+ #           time.sleep(0.5)
+            print("AVANT")
+            motorControl.forward(forward_speed)
+        else:
+  #          time.sleep(0.5)
+            motorControl.left(turn_speed)
+            print("gauche")
     else:
-        #motorControl.left(turn_speed)
+        motorControl.stop()
         print("aucun objet rouge...")
 
 
 
     # Show final output image
-    cv2.imshow('colorTest', frame)
+#    cv2.imshow('colorTest', frame)
 	
     k = cv2.waitKey(5) & 0xFF
     if k == 27:
         break
     
-cv2.destroyAllWindows()
+#cv2.destroyAllWindows()
 vidCapture.release()

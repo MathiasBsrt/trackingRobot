@@ -8,37 +8,37 @@ This class represent a motor DC
 class MotorDC:
     kit = 0
     def __init__(self):
-        self.kit = MotorKit(i2c=board.I2C())
+        i2c=111
+        print(i2c)
+        self.kit = MotorKit(i2c)
 
     '''
     This function allow the motor to go forward
     @param speed of the motor speed=0 – 100
     '''
     def forward(self, speed):
-        kit.motor1.throttle = speed
-        kit.motor2.throttle = speed
-
+        self.kit.motor1.throttle = 0.9
+        self.kit.motor2.throttle = 0.9
     
         '''
     This function allow the motor to go backward
     @param speed of the motor speed=0 – 100
     '''
     def backward(self, speed):
-        kit.motor1.throttle = -speed
-        kit.motor2.throttle = -speed
+        self.kit.motor1.throttle = -speed
+        self.kit.motor2.throttle = -speed
 
     def right(self,speed):
-        kit.motor1.throttle = speed
-        kit.motor2.throttle = 0
+        self.kit.motor1.throttle = 0
+        self.kit.motor2.throttle = 0.9
 
-    def right(self,speed):
-        kit.motor1.throttle = 0
-        kit.motor2.throttle = speed
+    def left(self,speed):
+        self.kit.motor1.throttle = 0.9
+        self.kit.motor2.throttle = 0
     
     def stop(self):
-        kit.motor1.throttle = 0
-        kit.motor2.throttle = 0
-
+        self.kit.motor1.throttle = 0
+        self.kit.motor2.throttle = 0
 
 
     
